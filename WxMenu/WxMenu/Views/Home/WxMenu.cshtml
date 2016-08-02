@@ -1,6 +1,26 @@
 ﻿@{
     ViewBag.Title = "WxMenu";
 }
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="mobile_menu_preview">
+        <div class="mobile_hd tc">搞笑社</div>
+        <div class="mobile_bd">
+            <ul class="pre_menu_list grid_line no_menu">
+                <li class="pre_menu_item grid_item no_extra">
+                    <a href="javascript:void(0);" class="pre_menu_link" title="最多添加3个一级菜单">
+                        <i class="icon14_menu_add"></i>
+                        <span class="js_addMenuTips">添加菜单</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-<h2>WxMenu</h2>
-
+@section styles{
+    <link href="~/Content/Home/WxMenu.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Scripts/vue.min.js"></script>
+}
