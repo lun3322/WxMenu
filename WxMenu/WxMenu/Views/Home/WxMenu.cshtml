@@ -9,8 +9,8 @@
             @*size1of1.2.3 表示主菜单的个数
                 current 表示当前选中编辑的菜单*@
             <ul class="pre_menu_list grid_line" v-bind:class="{no_menu: menus.length == 0 }">
-                <li class="pre_menu_item grid_item" v-for="menu in menus"
-                    v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1}"
+                <li class="pre_menu_item grid_item hide" v-for="menu in menus"
+                    v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1, show:menus.length > 0}"
                     v-on:click="chooseMenu">
                     <a href="javascript:void(0);" class="pre_menu_link">
                         <i class="icon_menu_dot js_icon_menu_dot dn"
