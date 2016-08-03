@@ -2,18 +2,92 @@
     ViewBag.Title = "WxMenu";
 }
 <h2>@ViewBag.Title</h2>
-<div class="row">
+<div class="row menu_preview_area">
     <div class="mobile_menu_preview">
         <div class="mobile_hd tc">搞笑社</div>
         <div class="mobile_bd">
-            <ul class="pre_menu_list grid_line no_menu">
-                <li class="pre_menu_item grid_item no_extra">
-                    <a href="javascript:void(0);" class="pre_menu_link" title="最多添加3个一级菜单">
+            @*
+                <!--只有一个添加菜单-->
+                <ul class="pre_menu_list grid_line no_menu">
+                    <li class="pre_menu_item grid_item no_extra">
+                        <a href="javascript:void(0);" class="pre_menu_link" title="最多添加3个一级菜单">
+                            <i class="icon14_menu_add"></i>
+                            <span class="js_addMenuTips">添加菜单</span>
+                        </a>
+                    </li>
+                </ul>
+            *@
+
+            @*size1of1.2.3 表示主菜单的个数
+            current 表示当前选中编辑的菜单*@
+            <ul class="pre_menu_list grid_line">
+                <li class="pre_menu_item grid_item size1of3">
+                    <a href="javascript:void(0);" class="pre_menu_link">
+
+                        <i class="icon_menu_dot js_icon_menu_dot dn" style="display: none;"></i>
+                        <i class="icon20_common sort_gray"></i>
+                        <span class="js_l1Title">菜单名称</span>
+                    </a>
+                    <div class="sub_pre_menu_box">
+                        <ul class="sub_pre_menu_list">
+                            <li>
+                                <a href="javascript:void(0);" class="jsSubView">
+                                    <span class="sub_pre_menu_inner js_sub_pre_menu_inner">
+                                        <i class="icon20_common sort_gray"></i>
+                                        <span class="js_l2Title">子菜单名称</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="js_addMenuBox">
+                                <a href="javascript:void(0);" class="jsSubView js_addL2Btn" title="最多添加5个子菜单" draggable="false">
+                                    <span class="sub_pre_menu_inner js_sub_pre_menu_inner">
+                                        <i class="icon14_menu_add"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <i class="arrow arrow_out"></i>
+                        <i class="arrow arrow_in"></i>
+                    </div>
+                </li>
+
+                <li class="pre_menu_item grid_item size1of3">
+                    <a href="javascript:void(0);" class="pre_menu_link">
+
+                        <i class="icon_menu_dot js_icon_menu_dot dn" style="display: none;"></i>
+                        <i class="icon20_common sort_gray"></i>
+                        <span class="js_l1Title">菜单名称</span>
+                    </a>
+                    <div class="sub_pre_menu_box">
+                        <ul class="sub_pre_menu_list">
+                            <li class="current">
+                                <a href="javascript:void(0);" class="jsSubView">
+                                    <span class="sub_pre_menu_inner js_sub_pre_menu_inner">
+                                        <i class="icon20_common sort_gray"></i>
+                                        <span class="js_l2Title">子菜单名称</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="js_addMenuBox">
+                                <a href="javascript:void(0);" class="jsSubView js_addL2Btn" title="最多添加5个子菜单" draggable="false">
+                                    <span class="sub_pre_menu_inner js_sub_pre_menu_inner">
+                                        <i class="icon14_menu_add"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <i class="arrow arrow_out"></i>
+                        <i class="arrow arrow_in"></i>
+                    </div>
+                </li>
+
+                <li class="js_addMenuBox pre_menu_item grid_item no_extra size1of3">
+                    <a href="javascript:void(0);" class="pre_menu_link js_addL1Btn" title="最多添加3个一级菜单" draggable="false">
                         <i class="icon14_menu_add"></i>
-                        <span class="js_addMenuTips">添加菜单</span>
                     </a>
                 </li>
             </ul>
+
         </div>
     </div>
 </div>
