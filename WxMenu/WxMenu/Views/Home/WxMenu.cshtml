@@ -14,9 +14,9 @@
                     v-on:click="chooseMenu($index)">
                     <a href="javascript:void(0);" class="pre_menu_link">
                         <i class="icon_menu_dot js_icon_menu_dot dn"
-                           v-bind:style="{display:menu.subMenus.length > 0 ? 'inline-block' : 'none'}" ></i>
+                           v-bind:style="{display:menu.subMenus.length > 0 ? 'inline-block' : 'none'}"></i>
                         <i class="icon20_common sort_gray"></i>
-                        <span>{{menu.title}}</span>
+                        <span v-text="menu.title"></span>
                     </a>
                     <div class="sub_pre_menu_box">
                         <ul class="sub_pre_menu_list">
@@ -25,7 +25,7 @@
                                 <a href="javascript:void(0);">
                                     <span class="sub_pre_menu_inner">
                                         <i class="icon20_common sort_gray"></i>
-                                        <span>{{submenu.title}}</span>
+                                        <span v-text="submenu.title"></span>
                                     </span>
                                 </a>
                             </li>
@@ -52,6 +52,23 @@
                 </li>
             </ul>
 
+        </div>
+    </div>
+    <div class="mobile_menu_setting" v-if="curMenu.title">
+        <div class="col-md-12">
+            <div class="setting_header">
+                <div>
+                    <span v-text="curMenu.title">子菜单名称</span>
+                    <span class="pull-right">
+                        <a href="javascript:void(0);" v-on:click="deleteMenu(curMenu.mainIndex, curMenu.subIndex)">删除菜单</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="setting_body">
+                asdfkjas;dlkfja;sdlkfja
+            </div>
         </div>
     </div>
 </div>
