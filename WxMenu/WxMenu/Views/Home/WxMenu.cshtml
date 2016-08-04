@@ -10,8 +10,8 @@
                 current 表示当前选中编辑的菜单*@
             <ul class="pre_menu_list grid_line" v-bind:class="{no_menu: menus.length == 0 }">
                 <li class="pre_menu_item grid_item hide" v-for="menu in menus"
-                    v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1, show:menus.length > 0}"
-                    v-on:click="chooseMenu">
+                    v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1, show:menus.length > 0, current: menu.select}"
+                    v-on:click="chooseMenu($index)">
                     <a href="javascript:void(0);" class="pre_menu_link">
                         <i class="icon_menu_dot js_icon_menu_dot dn"
                            v-bind:style="{display:menu.subMenus.length > 0 ? 'inline-block' : 'none'}" ></i>
@@ -20,7 +20,8 @@
                     </a>
                     <div class="sub_pre_menu_box">
                         <ul class="sub_pre_menu_list">
-                            <li v-for="submenu in menu.subMenus" v-on:click="chooseMenu">
+                            <li v-for="submenu in menu.subMenus" v-on:click.stop="chooseMenu($parent.$index,$index)"
+                                v-bind:class="{current: submenu.select}">
                                 <a href="javascript:void(0);">
                                     <span class="sub_pre_menu_inner">
                                         <i class="icon20_common sort_gray"></i>
