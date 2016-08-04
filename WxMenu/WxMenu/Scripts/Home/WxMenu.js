@@ -1,6 +1,7 @@
 ﻿var app = new Vue({
     el: '#app',
     data: {
+        title: "测试公众号",
         menus: [
 
         ]
