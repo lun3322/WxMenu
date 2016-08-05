@@ -16,7 +16,7 @@
                         <i class="icon_menu_dot js_icon_menu_dot dn"
                            v-bind:style="{display:menu.subMenus.length > 0 ? 'inline-block' : 'none'}"></i>
                         <i class="icon20_common sort_gray"></i>
-                        <span v-text="menu.title"></span>
+                        <span v-text="menu.title || '菜单名称'"></span>
                     </a>
                     <div class="sub_pre_menu_box">
                         <ul class="sub_pre_menu_list">
@@ -25,7 +25,7 @@
                                 <a href="javascript:void(0);">
                                     <span class="sub_pre_menu_inner">
                                         <i class="icon20_common sort_gray"></i>
-                                        <span v-text="submenu.title"></span>
+                                        <span v-text="submenu.title || '子菜单名称'"></span>
                                     </span>
                                 </a>
                             </li>
@@ -58,7 +58,7 @@
         <div class="col-md-12">
             <div class="setting_header">
                 <div>
-                    <span v-text="curMenu.title || '菜单名称'">子菜单名称</span>
+                    <span v-text="curTitle || '菜单名称'">子菜单名称</span>
                     <span class="pull-right">
                         <a href="javascript:void(0);" v-on:click="deleteMenu(curMenu.mainIndex, curMenu.subIndex)">删除菜单</a>
                     </span>
@@ -71,7 +71,8 @@
                     <div class="form-group">
                         <label for="menuTitle" class="col-sm-2 control-label">菜单名称</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="menuTitle" v-model="curMenu.title"/>
+                            <input type="text" class="form-control" id="menuTitle"
+                                   v-model="curTitle"/>
                         </div>
                     </div>
                 </form>

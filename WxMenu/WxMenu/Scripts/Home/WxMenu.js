@@ -3,7 +3,6 @@
     data: {
         title: "测试公众号",
         curMenu: {
-            title: "",
             mainIndex: -1,
             subIndex: -1
         },
@@ -14,6 +13,23 @@
                 subMenus: []
             }
         ]
+    },
+    computed: {
+        curTitle: {
+            get: function () {
+                if (this.curMenu.subIndex > -1) {
+                    return this.menus[this.curMenu.mainIndex].subMenus[this.curMenu.subIndex].title;
+                }
+                return this.menus[this.curMenu.mainIndex].title;
+            },
+            set: function (newValue) {
+                if (this.curMenu.subIndex > -1) {
+                    this.menus[this.curMenu.mainIndex].subMenus[this.curMenu.subIndex].title = newValue;
+                } else {
+                    this.menus[this.curMenu.mainIndex].title = newValue;
+                }
+            }
+        }
     },
     methods: {
         addMainMenu: function () {
