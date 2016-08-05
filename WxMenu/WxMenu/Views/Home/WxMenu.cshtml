@@ -54,11 +54,11 @@
 
         </div>
     </div>
-    <div class="mobile_menu_setting" v-if="curMenu.title">
+    <div class="mobile_menu_setting" v-if="curMenu.mainIndex > -1">
         <div class="col-md-12">
             <div class="setting_header">
                 <div>
-                    <span v-text="curMenu.title">子菜单名称</span>
+                    <span v-text="curMenu.title || '菜单名称'">子菜单名称</span>
                     <span class="pull-right">
                         <a href="javascript:void(0);" v-on:click="deleteMenu(curMenu.mainIndex, curMenu.subIndex)">删除菜单</a>
                     </span>
