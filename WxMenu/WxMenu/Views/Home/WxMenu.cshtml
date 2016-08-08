@@ -2,87 +2,99 @@
     ViewBag.Title = "WxMenu";
 }
 <h2>@ViewBag.Title</h2>
-<div class="row" id="app">
-    <div class="mobile_menu_preview">
-        <div class="mobile_hd tc" v-text="title">公众号</div>
-        <div class="mobile_bd">
-            @*size1of1.2.3 表示主菜单的个数
-                current 表示当前选中编辑的菜单*@
-            <ul class="pre_menu_list grid_line" v-bind:class="{no_menu: menus.length == 0 }">
-                <li class="pre_menu_item grid_item hide" v-for="menu in menus"
-                    v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1, show:menus.length > 0, current: menu.select}"
-                    v-on:click="chooseMenu($index)">
-                    <a href="javascript:void(0);" class="pre_menu_link">
-                        <i class="icon_menu_dot js_icon_menu_dot dn"
-                           v-bind:style="{display:menu.subMenus.length > 0 ? 'inline-block' : 'none'}"></i>
-                        <i class="icon20_common sort_gray"></i>
-                        <span v-text="menu.title || '菜单名称'"></span>
-                    </a>
-                    <div class="sub_pre_menu_box">
-                        <ul class="sub_pre_menu_list">
-                            <li v-for="submenu in menu.subMenus" v-on:click.stop="chooseMenu($parent.$index,$index)"
-                                v-bind:class="{current: submenu.select}">
-                                <a href="javascript:void(0);">
-                                    <span class="sub_pre_menu_inner">
-                                        <i class="icon20_common sort_gray"></i>
-                                        <span v-text="submenu.title || '子菜单名称'"></span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li v-if="menu.subMenus.length < 5">
-                                <a href="javascript:void(0);" title="最多添加5个子菜单" v-on:click="addSubMenu($index)">
-                                    <span class="sub_pre_menu_inner">
-                                        <i class="icon14_menu_add"></i>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <i class="arrow arrow_out"></i>
-                        <i class="arrow arrow_in"></i>
-                    </div>
-                </li>
+<div id="app">
 
-                <li class="pre_menu_item grid_item no_extra"
-                    v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1}"
-                    v-if="menus.length < 3">
-                    <a href="javascript:void(0);" class="pre_menu_link" title="最多添加3个一级菜单" v-on:click="addMainMenu">
-                        <i class="icon14_menu_add"></i>
-                        <span v-if="menus.length == 0">添加菜单</span>
-                    </a>
-                </li>
-            </ul>
 
+    <div class="row">
+        <div class="mobile_menu_preview">
+            <div class="mobile_hd tc" v-text="title">公众号</div>
+            <div class="mobile_bd">
+                @*size1of1.2.3 表示主菜单的个数
+                    current 表示当前选中编辑的菜单*@
+                <ul class="pre_menu_list grid_line" v-bind:class="{no_menu: menus.length == 0 }">
+                    <li class="pre_menu_item grid_item hide" v-for="menu in menus"
+                        v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1, show:menus.length > 0, current: menu.select}"
+                        v-on:click="chooseMenu($index)">
+                        <a href="javascript:void(0);" class="pre_menu_link">
+                            <i class="icon_menu_dot js_icon_menu_dot dn"
+                               v-bind:style="{display:menu.subMenus.length > 0 ? 'inline-block' : 'none'}"></i>
+                            <i class="icon20_common sort_gray"></i>
+                            <span v-text="menu.title || '菜单名称'"></span>
+                        </a>
+                        <div class="sub_pre_menu_box">
+                            <ul class="sub_pre_menu_list">
+                                <li v-for="submenu in menu.subMenus" v-on:click.stop="chooseMenu($parent.$index,$index)"
+                                    v-bind:class="{current: submenu.select}">
+                                    <a href="javascript:void(0);">
+                                        <span class="sub_pre_menu_inner">
+                                            <i class="icon20_common sort_gray"></i>
+                                            <span v-text="submenu.title || '子菜单名称'"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li v-if="menu.subMenus.length < 5">
+                                    <a href="javascript:void(0);" title="最多添加5个子菜单" v-on:click="addSubMenu($index)">
+                                        <span class="sub_pre_menu_inner">
+                                            <i class="icon14_menu_add"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <i class="arrow arrow_out"></i>
+                            <i class="arrow arrow_in"></i>
+                        </div>
+                    </li>
+
+                    <li class="pre_menu_item grid_item no_extra"
+                        v-bind:class="{size1of2:menus.length == 1, size1of3:menus.length > 1}"
+                        v-if="menus.length < 3">
+                        <a href="javascript:void(0);" class="pre_menu_link" title="最多添加3个一级菜单" v-on:click="addMainMenu">
+                            <i class="icon14_menu_add"></i>
+                            <span v-if="menus.length == 0">添加菜单</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
         </div>
-    </div>
-    <div class="mobile_menu_setting" v-if="curMenu.mainIndex > -1">
-        <div class="col-md-12">
-            <div class="setting_header">
-                <div>
-                    <span v-text="curTitle || '菜单名称'">子菜单名称</span>
-                    <span class="pull-right">
-                        <a href="javascript:void(0);" v-on:click="deleteMenu(curMenu.mainIndex, curMenu.subIndex)">删除菜单</a>
-                    </span>
+        <div class="mobile_menu_setting" v-if="curMenu.mainIndex > -1" v-cloak>
+            <div class="col-md-12">
+                <div class="setting_header">
+                    <div>
+                        <span v-text="curTitle || '菜单名称'">子菜单名称</span>
+                        <span class="pull-right">
+                            <a href="javascript:void(0);" v-on:click="deleteMenu(curMenu.mainIndex, curMenu.subIndex)">删除菜单</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="setting_body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="menuTitle" class="col-sm-2 control-label">菜单名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="menuTitle"
+                                       v-model="curTitle" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="setting_body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="menuTitle" class="col-sm-2 control-label">菜单名称</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="menuTitle"
-                                   v-model="curTitle"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+
+    </div>
+    <div class="row" style="position: relative; float: none; display: table-cell;">
+        <textarea cols="100" rows="4" v-model="menus | json" style="width:100%;max-width:100%;"></textarea>
     </div>
 </div>
-
 @section styles{
     <link href="~/Content/Home/WxMenu.css" rel="stylesheet" />
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 }
 @section scripts{
     <script src="~/Scripts/vue.min.js"></script>
