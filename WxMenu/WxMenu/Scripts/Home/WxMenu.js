@@ -7,13 +7,13 @@
             subIndex: -1
         },
         menus: [
-            {
-                title: "菜单名称",
-                select: true,
-                action: "",
-                actionParam: "",
-                subMenus: []
-            }
+            //{
+            //    title: "菜单名称",
+            //    select: true,
+            //    action: "",
+            //    actionParam: "",
+            //    subMenus: []
+            //}
         ]
     },
     computed: {
@@ -35,10 +35,17 @@
     },
     methods: {
         addMainMenu: function () {
+            if (this.menus.length > 0) {
+                if (this.$formValidator.invalid) return;
+            }
             this.clearSelect();
             this.menus.push(this.getDefaultMenu(true));
+            if (this.menus.length === 1) {
+                this.chooseMenu(0);
+            }
         },
         addSubMenu: function (index) {
+            if (this.$formValidator.invalid) return;
             this.clearSelect();
             this.menus[index].subMenus.push(this.getDefaultMenu());
             if (this.menus[index].action.length > 0) this.menus[index].action = "";
@@ -54,6 +61,9 @@
             this.chooseMenu(index);
         },
         chooseMenu: function (index, subIndex) {
+            if (this.hasOwnProperty("$formValidator")) {
+                if (this.$formValidator.invalid) return;
+            }
             this.clearSelect();
             if (subIndex != undefined) {
                 this.menus[index].subMenus[subIndex].select = true;
@@ -69,10 +79,12 @@
         },
         clearSelect: function () {
             this.menus.forEach(function (value) {
-                value.select = false;
-                value.subMenus.forEach(function (subValue) {
-                    subValue.select = false;
-                });
+                if (value.hasOwnProperty("select")) {
+                    value.select = false;
+                    value.subMenus.forEach(function (subValue) {
+                        subValue.select = false;
+                    });
+                }
             });
         },
         getDefaultMenu: function (isMainMenu) {
