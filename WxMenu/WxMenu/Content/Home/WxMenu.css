@@ -275,3 +275,7 @@ ul, ol {
     padding-top:10px;
     padding-bottom:10px;
 }
+
+.setting_body .errors {
+    color: #f00;
+}

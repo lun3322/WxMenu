@@ -45,11 +45,16 @@
             }
         },
         addSubMenu: function (index) {
-            if (this.$formValidator.invalid) return;
+            if (this.currentMenu.hasOwnProperty("subMenus")) {
+                if (this.$formValidator.title.invalid) return;
+            } else {
+                if (this.$formValidator.invalid) return;
+            }
             this.clearSelect();
-            this.menus[index].subMenus.push(this.getDefaultMenu());
+            var newLength = this.menus[index].subMenus.push(this.getDefaultMenu());
             if (this.menus[index].action.length > 0) this.menus[index].action = "";
             if (this.menus[index].actionParam.length > 0) this.menus[index].actionParam = "";
+            this.chooseMenu(index, newLength - 1);
         },
         deleteMenu: function (index, subIndex) {
             this.clearSelect();
@@ -61,18 +66,20 @@
             this.chooseMenu(index);
         },
         chooseMenu: function (index, subIndex) {
-            if (this.hasOwnProperty("$formValidator")) {
-                if (this.$formValidator.invalid) return;
+            if (app.currentMenu) {
+                if (this.currentMenu.hasOwnProperty("subMenus")) {
+                    if (this.$formValidator.title.invalid) return;
+                } else {
+                    if (this.$formValidator.invalid) return;
+                }
             }
             this.clearSelect();
-            if (subIndex != undefined) {
+            if (subIndex > -1) {
                 this.menus[index].subMenus[subIndex].select = true;
-                this.curMenu.title = this.menus[index].subMenus[subIndex].title;
                 this.curMenu.mainIndex = index;
                 this.curMenu.subIndex = subIndex;
             } else {
                 this.menus[index].select = true;
-                this.curMenu.title = this.menus[index].title;
                 this.curMenu.mainIndex = index;
                 this.curMenu.subIndex = -1;
             }
