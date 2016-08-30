@@ -257,25 +257,29 @@ ul, ol {
     width: 600px;
     float: none;
     display: table-cell;
-    border:1px solid #d0d0d0;
+    border: 1px solid #d0d0d0;
 }
 
-.mobile_menu_setting .setting_header {
-    padding-top:10px;
-    padding-bottom:10px;
-}
+    .mobile_menu_setting .setting_header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
-.mobile_menu_setting .setting_header div {
-    padding-left:15px;
-    padding-right:15px;
-}
+        .mobile_menu_setting .setting_header div {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
 
-.mobile_menu_setting .setting_body {
-    border-top:1px solid #d0d0d0;
-    padding-top:10px;
-    padding-bottom:10px;
-}
+    .mobile_menu_setting .setting_body {
+        border-top: 1px solid #d0d0d0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
 .setting_body .errors {
     color: #f00;
+}
+
+[v-cloak] {
+    display: none;
 }
